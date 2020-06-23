@@ -1,0 +1,20 @@
+version: "3"
+services:
+  web:
+    build: .
+    environment:
+      - PYTHONUNBUFFERED=true
+    command:
+      [
+        "uvicorn",
+        "insurify_mbta_pilot:main:app",
+        "--reload",
+        "--host",
+        "0.0.0.0",
+      ]
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    stdin_open: true
+    tty: true
