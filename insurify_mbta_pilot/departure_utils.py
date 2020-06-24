@@ -38,6 +38,9 @@ def get_departure_list(station_id: str) -> List[dict]:
 
     res.raise_for_status()
 
+    if not res.json()["data"]:
+        return []
+
     return _format_departure_list(res.json())
 
 

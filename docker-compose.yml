@@ -7,8 +7,12 @@ services:
     command:
       [
         "uvicorn",
-        "insurify_mbta_pilot:main:app",
+        "insurify_mbta_pilot:app",
+        "--log-level",
+        "debug",
         "--reload",
+        "--reload-dir",
+        "insurify_mbta_pilot/",
         "--host",
         "0.0.0.0",
       ]

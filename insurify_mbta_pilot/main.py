@@ -4,11 +4,24 @@ from typing import List
 import requests
 from fastapi import FastAPI, status
 from starlette.exceptions import HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 
 from insurify_mbta_pilot.departure_utils import get_departure_list
 
 app = FastAPI()
 logger = logging.getLogger(__name__)
+
+origins = [
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
@@ -27,7 +40,6 @@ def get_departures(station_id: str = "place-north") -> List[dict]:
     Returns:
         List[dict]: a list of formatted departure dicts
     """
-
     try:
         departures = get_departure_list(station_id)
     except requests.RequestException:
