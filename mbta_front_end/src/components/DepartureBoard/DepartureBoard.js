@@ -1,21 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import Moment from 'react-moment';
+import useInterval from '../../hooks/useInterval';
 
 function DepartureBoard() {
   const headers = ['Time', 'Destination', 'Train #', 'Track #', 'Status'];
   const nameRegex = /...(.+)/;
-  const [departures, setDepartures] = useState([]);
 
-  useEffect(() => {
-    fetch(`http://localhost:8000/departures/place-north`)
-      .then((res) => res.json())
-      .then((response) => {
-        console.log('RESPONSE', response);
-        setDepartures(response);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+  const [departures, setDepartures] = useState([]);
+  let [isLoaded, setIsLoaded] = useState(false);
+
+  useInterval(
+    () => {
+      fetch(`http://localhost:8000/departures/place-north`)
+        .then((res) => res.json())
+        .then((response) => {
+          console.log('RESPONSE', response);
+          setDepartures(response);
+          isLoaded = true;
+        })
+        .catch((error) => console.error(error));
+    },
+    setIsLoaded,
+    isLoaded ? 60000 : null
+  );
 
   return (
     <Table responsive striped variant="dark">
@@ -41,7 +49,6 @@ function DepartureBoard() {
       </tbody>
     </Table>
   );
-  return <div>hello</div>;
 }
 
 export default DepartureBoard;
