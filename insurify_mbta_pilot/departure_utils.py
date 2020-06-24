@@ -23,8 +23,8 @@ def get_departure_list(station_id: str) -> List[dict]:
     Returns:
         List[dict]: a list of formatted departure dicts
     """
-
     url = BASE_URL + "predictions"
+
     filters = {
         "filter[stop]": station_id,
         "filter[route_type]": RAIL_TYPE,

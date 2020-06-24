@@ -34,7 +34,7 @@ def get_departures(station_id: str = "place-north") -> List[dict]:
     """Attempts to retrieve departure data from MBTA API
 
     Args:
-        station_id (str, optional): "place-north" (North Station) or "place-south" (South Station). 
+        station_id (str, optional): "place-north" (North Station) or "place-sstat" (South Station). 
         Defaults to "place-north".
 
     Returns:
