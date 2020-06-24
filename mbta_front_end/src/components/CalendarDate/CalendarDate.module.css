@@ -1,0 +1,6 @@
+.DateContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  float: left;
+}

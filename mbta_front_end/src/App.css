@@ -1,9 +1,19 @@
-.App-container {
+.DepartureContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-button {
+.StationDropdown {
   margin: 20px;
+}
+
+.TimeContainer {
+  width: 100%;
+  background-color: #343a40;
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+  line-height: 1.5;
 }

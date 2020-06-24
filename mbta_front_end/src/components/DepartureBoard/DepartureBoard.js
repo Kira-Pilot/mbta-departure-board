@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table';
 import Moment from 'react-moment';
 import useInterval from '../../hooks/useInterval';
 
-function DepartureBoard(props) {
+export default function DepartureBoard(props) {
   const headers = ['Time', 'Destination', 'Train #', 'Track #', 'Status'];
   const nameRegex = /...(.+)/;
 
@@ -22,7 +22,6 @@ function DepartureBoard(props) {
       fetch(`http://localhost:8000/departures/${stationId}`)
         .then((res) => res.json())
         .then((response) => {
-          console.log('RESPONSE', response);
           setDepartures(response);
           isLoaded = true;
         })
@@ -61,5 +60,3 @@ function DepartureBoard(props) {
 DepartureBoard.propTypes = {
   station: PropTypes.string,
 };
-
-export default DepartureBoard;
