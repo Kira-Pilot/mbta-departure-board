@@ -6,8 +6,7 @@ import requests
 logger = logging.getLogger(__name__)
 
 BASE_URL = "https://api-v3.mbta.com/"
-API_KEY = "0282e5ed3366459ab712522e83426641"
-PARAMS = {"api_key": API_KEY}
+PARAMS = {}  # API key goes in here
 
 RAIL_TYPE = 2
 DIRECTION_ID = 0

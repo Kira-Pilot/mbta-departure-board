@@ -1,6 +1,16 @@
 version: "3"
 services:
+  tests:
+    image: mbta-app
+    build: .
+    environment:
+      - PYTHONUNBUFFERED=true
+      - PYTHONPATH=.
+    command: "pytest --cov=insurify_mbta_pilot tests"
+    stdin_open: true
+    tty: true
   web:
+    image: mbta-app
     build: .
     environment:
       - PYTHONUNBUFFERED=true
