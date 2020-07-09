@@ -6,7 +6,7 @@ from fastapi import FastAPI, status
 from starlette.exceptions import HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from insurify_mbta_pilot.departure_utils import get_departure_list
+from mbta_back_end.departure_utils import get_departure_list
 
 app = FastAPI()
 logger = logging.getLogger(__name__)
