@@ -9,7 +9,7 @@ export default function Time() {
   useEffect(() => {
     const timeId = setInterval(() => tick(), 1000);
     return () => clearInterval(timeId);
-  });
+  }, []);
 
   function tick() {
     if (moment().format('mm') !== moment(time).format('mm')) {

@@ -8,18 +8,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import './App.css';
 
 function App() {
-  const stationMap = {
-    'place-north': {
-      displayName: 'North Station',
-      id: 'place-north',
-    },
-    'place-sstat': {
-      displayName: 'South Station',
-      id: 'place-sstat',
-    },
-  };
-
-  let [stationId, setStation] = useState(stationMap['place-north'].id);
+  let [station, setStation] = useState('place-north');
 
   function updateStation(event) {
     setStation(event);
@@ -29,7 +18,7 @@ function App() {
     <div className="DepartureContainer">
       <DropdownButton
         id="station-button"
-        title={stationMap[stationId].displayName}
+        title="Select a Station"
         onSelect={(event) => updateStation(event)}
         className="StationDropdown"
         variant="secondary"
@@ -37,13 +26,13 @@ function App() {
       >
         <Dropdown.Item
           eventKey="place-north"
-          active={stationId === 'place-north'}
+          active={station === 'place-north'}
         >
           North Station
         </Dropdown.Item>
         <Dropdown.Item
           eventKey="place-sstat"
-          active={stationId === 'place-sstat'}
+          active={station === 'place-sstat'}
         >
           South Station
         </Dropdown.Item>
@@ -52,7 +41,7 @@ function App() {
         <CalendarDate></CalendarDate>
         <Time></Time>
       </div>
-      <DepartureBoard station={stationId}></DepartureBoard>
+      <DepartureBoard station={station}></DepartureBoard>
     </div>
   );
 }

@@ -5,20 +5,31 @@ import Moment from 'react-moment';
 import useInterval from '../../hooks/useInterval';
 
 export default function DepartureBoard(props) {
-  const { station } = props;
-  const pollingDelay = 60000;
   const headers = ['Time', 'Destination', 'Train #', 'Track #', 'Status'];
   const nameRegex = /...(.+)/;
 
   const [departures, setDepartures] = useState([]);
+  let [isLoaded, setIsLoaded] = useState(false);
+  let [stationId, setStationId] = useState(props.station);
 
   useEffect(() => {
-    getDepartures(station, setDepartures);
-  }, [station]);
+    setStationId(props.station);
+    setIsLoaded(false);
+  }, [props.station]);
 
-  useInterval(() => {
-    getDepartures(station, setDepartures);
-  }, pollingDelay);
+  useInterval(
+    () => {
+      fetch(`http://localhost:8000/departures/${stationId}`)
+        .then((res) => res.json())
+        .then((response) => {
+          setDepartures(response);
+          isLoaded = true;
+        })
+        .catch((error) => console.error(error));
+    },
+    setIsLoaded,
+    isLoaded ? 60000 : null
+  );
 
   return (
     <Table responsive striped variant="dark">
@@ -49,12 +60,3 @@ export default function DepartureBoard(props) {
 DepartureBoard.propTypes = {
   station: PropTypes.string,
 };
-
-function getDepartures(station, setDepartures) {
-  fetch(`http://localhost:8000/departures/${station}`)
-    .then((res) => res.json())
-    .then((response) => {
-      setDepartures(response);
-    })
-    .catch((error) => console.error(error));
-}
