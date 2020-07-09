@@ -6,7 +6,9 @@ services:
     environment:
       - PYTHONUNBUFFERED=true
       - PYTHONPATH=.
-    command: "pytest --cov=insurify_mbta_pilot tests"
+    command: "pytest --cov=mbta_back_end tests"
+    volumes:
+      - .:/app
     stdin_open: true
     tty: true
   web:
@@ -17,12 +19,12 @@ services:
     command:
       [
         "uvicorn",
-        "insurify_mbta_pilot:app",
+        "mbta_back_end:app",
         "--log-level",
         "debug",
         "--reload",
         "--reload-dir",
-        "insurify_mbta_pilot/",
+        "mbta_back_end/",
         "--host",
         "0.0.0.0",
       ]

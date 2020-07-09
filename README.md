@@ -26,9 +26,9 @@ tests/test_main.py ...                                                          
 ---------- coverage: platform darwin, python 3.8.3-final-0 -----------
 Name                                     Stmts   Miss  Cover
 ------------------------------------------------------------
-insurify_mbta_pilot/__init__.py              1      0   100%
-insurify_mbta_pilot/departure_utils.py      40      1    98%
-insurify_mbta_pilot/main.py                 21      0   100%
+mbta_back_end/__init__.py              1      0   100%
+mbta_back_end/departure_utils.py      40      1    98%
+mbta_back_end/main.py                 21      0   100%
 ------------------------------------------------------------
 TOTAL                                       62      1    98%
 ```

@@ -1,4 +1,4 @@
-from insurify_mbta_pilot.main import app
+from mbta_back_end.main import app
 from fastapi.testclient import TestClient
 from tests.data import train
 
