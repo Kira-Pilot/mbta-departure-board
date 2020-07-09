@@ -8,7 +8,17 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import './App.css';
 
 function App() {
-  let [station, setStation] = useState('place-north');
+  const stationMap = {
+    'place-north': {
+      displayName: 'North Station',
+      id: 'place-north',
+    },
+    'place-sstat': {
+      displayName: 'South Station',
+      id: 'place-sstat',
+    },
+  };
+  let [station, setStation] = useState(stationMap['place-north'].id);
 
   function updateStation(event) {
     setStation(event);
@@ -18,7 +28,7 @@ function App() {
     <div className="DepartureContainer">
       <DropdownButton
         id="station-button"
-        title="Select a Station"
+        title={stationMap[station].displayName}
         onSelect={(event) => updateStation(event)}
         className="StationDropdown"
         variant="secondary"

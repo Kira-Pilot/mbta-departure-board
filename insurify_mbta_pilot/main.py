@@ -43,6 +43,7 @@ def get_departures(station_id: str = "place-north") -> List[dict]:
     try:
         departures = get_departure_list(station_id)
     except requests.RequestException:
+        logger.exception("Exception!: ")
         raise HTTPException(status_code=500, detail="Server Error")
     else:
         return departures
